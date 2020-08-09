@@ -42,3 +42,7 @@ variable "alb_tg_arn" {
   description = "application load balancer target group arn"
 }
 
+variable "ec2_codedeploy_profile" {
+    description = "iam instance profile for ec2 instance to call codedeploy service, s3"
+}
+

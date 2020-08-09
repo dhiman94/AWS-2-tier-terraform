@@ -5,6 +5,7 @@ resource "aws_launch_configuration" "tomcat_launch_config" {
   instance_type               = lookup(var.instance_type_to_env, var.env_name, "t2.micro")
   security_groups             = [var.tomcat_server_sg]
   associate_public_ip_address = false
+  iam_instance_profile = var.ec2_codedeploy_profile
 
   lifecycle {
     create_before_destroy = true
@@ -27,6 +28,12 @@ resource "aws_autoscaling_group" "tomcat_asg" {
 
   lifecycle {
     create_before_destroy = true
+  }
+
+  tag {
+    key = "Name"
+    value = "tomcat"
+    propagate_at_launch = true
   }
 }
 

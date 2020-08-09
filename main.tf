@@ -20,12 +20,16 @@ module "alb" {
   vpc_id               = module.vpc.vpc_id
 }
 
+module "iam_roles" {
+    source = "./modules/iam-roles"
+}
+
 module "ec2" {
   source = "./modules/ec2"
 
   tomcat_server_sg = module.sg.out_tomcat_server_sg_id
   asg_subnet_ids   = module.vpc.private_subnet_ids
   alb_tg_arn       = module.alb.out_target_group_arn
-
+  ec2_codedeploy_profile = module.iam_roles.ec2_codedeploy_profile_name
 }
 

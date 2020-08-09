@@ -60,7 +60,7 @@ resource "aws_internet_gateway" "igw" {
     Name = "IGW"
   }
 }
-/*
+
 # create elastic ip for nat gw
 resource "aws_eip" "nat_gw_eip" {
   vpc      = true
@@ -72,7 +72,7 @@ resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_gw_eip.id
   subnet_id     = aws_subnet.public_subnet[0].id
 }
-*/
+
 # create public subnet route table
 resource "aws_route_table" "public_subnet_route_table" {
   vpc_id = aws_vpc.main.id
@@ -86,7 +86,7 @@ resource "aws_route_table" "public_subnet_route_table" {
     Name = "Public RT"
   }
 }
-/*
+
 # create private subnet route table
 resource "aws_route_table" "private_subnet_route_table" {
   vpc_id = aws_vpc.main.id
@@ -100,19 +100,19 @@ resource "aws_route_table" "private_subnet_route_table" {
     Name = "Private RT"
   }
 }
-*/
+
 # associate public subnet RT
 resource "aws_route_table_association" "public_subnet_rt_assoc" {
   count          = 3
   subnet_id      = aws_subnet.public_subnet[count.index].id
   route_table_id = aws_route_table.public_subnet_route_table.id
 }
-/*
+
 # associate private subnet RT
 resource "aws_route_table_association" "private_subnet_rt_assoc" {
   count = 3
   subnet_id      = aws_subnet.private_subnet[count.index].id
   route_table_id = aws_route_table.private_subnet_route_table.id
 }
-*/
+
 
