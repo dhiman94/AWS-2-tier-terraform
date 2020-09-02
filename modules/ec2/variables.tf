@@ -1,7 +1,8 @@
+/*
 terraform {
   experiments = [variable_validation]
 }
-
+*/
 variable "instance_type_to_env" {
   description = "maps ec2 instance type to environment"
   type        = map
@@ -26,7 +27,7 @@ variable "env_name" {
 
 variable "app_ami_id" {
   description = "custom ami created for tomcat server"
-  default     = "ami-0d6edafd83d77276a"
+  default     = "ami-0d6c1e671ebbaf35b"
 }
 
 variable "tomcat_server_sg" {

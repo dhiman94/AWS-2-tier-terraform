@@ -33,3 +33,19 @@ module "ec2" {
   ec2_codedeploy_profile = module.iam_roles.ec2_codedeploy_profile_name
 }
 
+module "s3" {
+    source = "./modules/s3"
+
+    ec2_codedeploy_role_arn = module.iam_roles.ec2_codedeploy_role_arn
+
+}
+
+module "codedeploy" {
+    source = "./modules/codedeploy"
+
+    app_name = var.app_name
+    deployment_group_name = var.deployment_group_name
+    codedeploy_service_role_arn = module.iam_roles.codedeploy_service_role_arn
+    
+}
+
