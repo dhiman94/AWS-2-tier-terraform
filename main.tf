@@ -49,3 +49,6 @@ module "codedeploy" {
     
 }
 
+output "codedeploy_bucket_name" {
+  value = module.s3.codedeploy_bucket_name
+}

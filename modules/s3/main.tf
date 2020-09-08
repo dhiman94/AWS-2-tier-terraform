@@ -20,6 +20,10 @@ resource "aws_s3_bucket" "codedeploy_artifacts" {
   }
 }
 
+output "codedeploy_bucket_name" {
+  value = aws_s3_bucket.codedeploy_artifacts.id
+}
+
 # create bucket policy to allow ec2 codedeploy role
 resource "aws_s3_bucket_policy" "s3_codedeploy_policy" {
   bucket = aws_s3_bucket.codedeploy_artifacts.id
