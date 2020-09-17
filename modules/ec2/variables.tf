@@ -27,7 +27,7 @@ variable "env_name" {
 
 variable "app_ami_id" {
   description = "custom ami created for tomcat server"
-  default     = "ami-0d6c1e671ebbaf35b"
+  default     = "ami-0a592b763c866996f"
 }
 
 variable "tomcat_server_sg" {
